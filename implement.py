@@ -28,4 +28,6 @@ print("Test Accuracyc=",accuracy*100,"%")
 
 
 with open("training_history.pkl",'wb') as f:
-    pickle.dump(history.history,f)  
+    pickle.dump(history.history,f)
+    
+model.save('trained_model.h5')
