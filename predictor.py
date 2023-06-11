@@ -26,13 +26,8 @@ while True:
     # resize the frame
     frame = cv2.resize(frame,(128,128))
 
-    normalized_frame = frame/255.0
-
-    rgb_frame = cv2.cvtColor(normalized_frame,cv2.COLOR_BGR2RGB)
-
-    input_frame = np.expand_dims(rgb_frame,axis=0)
-
-    predictions = model.predict(input_frame)
+    
+    predictions = model.predict(np.expand_dims(frame,axis=0))
 
     predicted_class_index = np.argmax(predictions[0])
     predicted_class_label = class_labels[predicted_class_index]
@@ -42,7 +37,7 @@ while True:
     cv2.imshow("webcam",frame)
 
 
-    if cv2.waitKey(1)  == ord('q'):
+    if cv2.waitKey(1) & 0xFF  == ord('q'):
 
         break
 
