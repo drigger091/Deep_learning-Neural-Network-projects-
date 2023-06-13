@@ -15,8 +15,8 @@ plt.close()
 
 
 #plot the accuracy value
-plt.plot(h['acc'],label = 'train accuracy')
-plt.plot(h['val_acc'],label = 'val accuracy')
+plt.plot(h['accuracy'],label = 'train accuracy')
+plt.plot(h['val_accuracy'],label = 'val accuracy')
 plt.legend()
 plt.savefig("Accuracy_plot.png")
 plt.close()

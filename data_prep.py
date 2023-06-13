@@ -1,54 +1,46 @@
 import os
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-from PIL import Image
+from keras.preprocessing import image
+import cv2
 import warnings
+import random
 warnings.filterwarnings("ignore")
 
 
 
 def get_XY():
+    categories = ['with_mask', 'without_mask']
+    dataset = []
 
-    with_mask_files = os.listdir('E:\GITHUB\Deep_learning-Neural-Network-projects-\data\with_mask')
-    without_mask_files = os.listdir('E:\GITHUB\Deep_learning-Neural-Network-projects-\data\without_mask')
-    with_mask_labels = [1]*len(with_mask_files)
-    without_mask_labels = [0]*len(without_mask_files)
+    for category in categories:
+        path = os.path.join('data', category)
+        label = categories.index(category)
+        file_list = os.listdir(path)
+        random.shuffle(file_list)  # Shuffle the file list
 
-    labels = with_mask_labels + without_mask_labels
+        count = 0  # Track the number of selected photos
+        for file in file_list:
+            if count >= 1000:
+                break  # Stop iterating if we have reached the desired count
 
-    with_mask_path = 'E:\GITHUB\Deep_learning-Neural-Network-projects-\data\with_mask/'
+            img_path = os.path.join(path, file)
+            img = cv2.imread(img_path)
+            img = cv2.resize(img, (224, 224))
 
-    data = []
+            dataset.append([img, label])
+            count += 1
 
-    for img_file in with_mask_files:
+    random.shuffle(dataset)
 
-        image = Image.open(with_mask_path + img_file)
-        image = image.resize((128,128))
-        image = image.convert("RGB")
-        image = np.array(image)
-        data.append(image)
+    X = []
+    Y = []
 
+    for features, label in dataset:
+        X.append(features)
+        Y.append(label)
 
+    X = np.array(X)
+    X = X / 255  # scaling the X
+    Y = np.array(Y)
 
-    without_mask_path = 'E:\GITHUB\Deep_learning-Neural-Network-projects-\data\without_mask/'
-
-
-
-    for img_file in without_mask_files:
-
-        image = Image.open(without_mask_path + img_file)
-        image = image.resize((128,128))
-        image = image.convert("RGB")
-        image = np.array(image)
-        data.append(image)
-
-
-    X = np.array(data)
-    Y = np.array(labels)
-
-
-    return X ,Y
-
-
-get_XY()
+    return X, Y
