@@ -20,7 +20,7 @@ def get_XY():
 
         count = 0  # Track the number of selected photos
         for file in file_list:
-            if count >= 1000:
+            if count >= 1200:
                 break  # Stop iterating if we have reached the desired count
 
             img_path = os.path.join(path, file)
