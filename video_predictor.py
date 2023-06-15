@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 
 # Load the pre-trained model
-model_path = 'D:\Face_mask_detect\Trained_model.h5'  # Replace with the actual path to your trained model
+model_path = 'E:\GITHUBREpo\Deep_learning-Neural-Network-projects-\Trained_model.h5'  # Replace with the actual path to your trained model
 model = tf.keras.models.load_model(model_path)
 
 # Load the face cascade classifier
