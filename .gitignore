@@ -2,3 +2,4 @@ facemask/
 __pycache__/
 *.h5
 *.pkl
+*.zip

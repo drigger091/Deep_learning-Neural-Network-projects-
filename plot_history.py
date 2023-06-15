@@ -1,22 +1,21 @@
 import pickle
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as  plt
 
-with open('training_history.pkl','rb') as f:
+with open("training_history.pkl",'rb') as f:
     history = pickle.load(f)
-
-
+    
 h = history
-#plot the loss
-plt.plot(h['loss'],label = 'train loss')
-plt.plot(h['val_loss'],label = 'val loss')  
+
+# plot the loss value
+plt.plot(h.history['loss'], label='train loss')
+plt.plot(h.history['val_loss'], label='validation loss')
 plt.legend()
-plt.savefig("Loss_plot.png")
+plt.savefig("loss_plot.png")
 plt.close()
 
-
-#plot the accuracy value
-plt.plot(h['accuracy'],label = 'train accuracy')
-plt.plot(h['val_accuracy'],label = 'val accuracy')
+# plot the accuracy value
+plt.plot(h.history['acc'], label='train accuracy')
+plt.plot(h.history['val_acc'], label='validation accuracy')
 plt.legend()
 plt.savefig("Accuracy_plot.png")
 plt.close()

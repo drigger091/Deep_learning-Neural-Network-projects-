@@ -3,9 +3,8 @@ import numpy as np
 from keras.preprocessing import image
 import cv2
 import warnings
+warnings.filterwarnings('ignore')
 import random
-warnings.filterwarnings("ignore")
-
 
 
 def get_XY():
